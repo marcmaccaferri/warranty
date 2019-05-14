@@ -9,19 +9,19 @@
     
     <div class="field has-addons">
         <div class="control is-expanded">
-            <input class="input" type="text" value="{{ old('firstName','')}}" placeholder="First Name">
+            <input class="input" name="firstName" type="text" value="{{ old('firstName','')}}" placeholder="First Name">
         </div>
         <div class="control is-expanded">
-            <input class="input" type="text" value="{{ old('lastName','')}}" placeholder="Last Name">
+            <input class="input" name="lastName" type="text" value="{{ old('lastName','')}}" placeholder="Last Name">
         </div>
         <div class="control is-expanded">
-            <input class="input" type="text" value="{{ old('deviceType','')}}" placeholder="Device Type">
+            <input class="input" name="deviceType" type="text" value="{{ old('deviceType','')}}" placeholder="Device Type">
         </div>
         <div class="control is-expanded">
-            <input class="input" type="text" value="{{ old('serialNumber','')}}" placeholder="Serial Number">
+            <input class="input" name="serialNumber" type="text" value="{{ old('serialNumber','')}}" placeholder="Serial Number">
         </div>
         <div class="control is-expanded">
-            <select class="input" type="select" value="{{ old('coverageLength','')}}" placeholder="Coverage Length">
+            <select class="input" name="coverageLength" type="select" value="{{ old('coverageLength','')}}" placeholder="Coverage Length">
             <option value="1 Year">1 Year</option>
             <option value="2 Year">2 Year</option>
             </select>

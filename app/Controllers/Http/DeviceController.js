@@ -13,7 +13,11 @@ class DeviceController {
     async store ({ request, response, session }) {
   // validate form input
   const validation = await validate(request.all(), {
-    title: 'required|min:3|max:255'
+        firstName: 'required|min:3|max:255',
+        lastName: 'required|min:3|max:255',
+        deviceType: 'required|min:3|max:255',
+        serialNumber: 'required|min:3|max:255',
+        coverageLength: 'required|min:3|max:255'
   })
 
   // show error messages upon validation fail
@@ -25,15 +29,15 @@ class DeviceController {
   }
 
   // persist to database
-  /*const device = new Device()
+  const device = new Device()
      device.firstName = request.input('firstName')
      device.lastName = request.input('lastName')
      device.deviceType = request.input('deviceType')
      device.serialNumber = request.input('serialNumber')
      device.coverageLength = request.input('coverageLength')
-  await device.save()*/
+  await device.save()
 
-    const firstName = request.input('firstName')
+    /*const firstName = request.input('firstName')
     const lastName = request.input('lastName')
     const deviceType = request.input('deviceType')
     const serialNumber = request.input('serialNumber')
@@ -44,7 +48,7 @@ class DeviceController {
     device.lastName = lastName
     device.deviceType = deviceType
     device.serialNumber = serialNumber
-    device.coverageLength = coverageLength
+    device.coverageLength = coverageLength*/
     
 
     await device.save()

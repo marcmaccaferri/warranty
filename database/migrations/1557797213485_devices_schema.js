@@ -1,6 +1,6 @@
 'use strict'
-@type {import('@adonisjs/lucid/src/Schema')}
 
+{import('@adonisjs/lucid/src/Schema')}
 const Schema = use('Schema')
 
 class DevicesSchema extends Schema {
@@ -21,4 +21,4 @@ class DevicesSchema extends Schema {
   }
 }
 
-module.exports = DeviceSchema
+module.exports = DevicesSchema
