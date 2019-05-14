@@ -7,25 +7,30 @@
 <form action="/devices" method="POST">
     {{ csrfField() }}
     
-    <div class="field has-addons">
+    <div class="has-addons">
         <div class="control is-expanded">
             <input class="input" name="firstName" type="text" value="{{ old('firstName','')}}" placeholder="First Name">
         </div>
+        <br>
         <div class="control is-expanded">
             <input class="input" name="lastName" type="text" value="{{ old('lastName','')}}" placeholder="Last Name">
         </div>
+        <br>
         <div class="control is-expanded">
             <input class="input" name="deviceType" type="text" value="{{ old('deviceType','')}}" placeholder="Device Type">
         </div>
+        <br>
         <div class="control is-expanded">
             <input class="input" name="serialNumber" type="text" value="{{ old('serialNumber','')}}" placeholder="Serial Number">
         </div>
+        <br>
         <div class="control is-expanded">
             <select class="input" name="coverageLength" type="select" value="{{ old('coverageLength','')}}" placeholder="Coverage Length">
             <option value="1 Year">1 Year</option>
             <option value="2 Year">2 Year</option>
             </select>
         </div>
+        <br>
     <button type="submit" class="button is-primary">
         Submit
     </button>
@@ -53,6 +58,7 @@
             <th>Serial Number</th>
             <th>Coverage Length</th>
             <th>Coverage Number</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -91,7 +97,7 @@
             </tr>
           @else
             <tr>
-              <td colspan="6" class="has-text-centered">No Registered Devices</td>
+              <td colspan="7" class="has-text-centered">No Registered Devices</td>
             </tr>
           @endeach
         </tbody>
