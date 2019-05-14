@@ -2,29 +2,34 @@
 
 @section('content') 
   <div class="box">
-        <h2 class="title">Register A New Device</h2>
+        <h2 class="title text-center">Register A New Device</h2>
 
 <form action="/devices" method="POST">
     {{ csrfField() }}
     
     <div class="has-addons">
         <div class="control is-expanded">
+            <label><i class="fa fa-user" aria-hidden="true"></i>  First Name</label>
             <input class="input" name="firstName" type="text" value="{{ old('firstName','')}}" placeholder="First Name">
         </div>
         <br>
         <div class="control is-expanded">
+            <label><i class="fa fa-user" aria-hidden="true"></i>  Last Name</label>
             <input class="input" name="lastName" type="text" value="{{ old('lastName','')}}" placeholder="Last Name">
         </div>
         <br>
         <div class="control is-expanded">
+            <label><i class="fa fa-mobile" aria-hidden="true"></i>  Device Type</label>
             <input class="input" name="deviceType" type="text" value="{{ old('deviceType','')}}" placeholder="Device Type">
         </div>
         <br>
         <div class="control is-expanded">
+            <label><i class="fa fa-barcode" aria-hidden="true"></i>  Serial Number</label>
             <input class="input" name="serialNumber" type="text" value="{{ old('serialNumber','')}}" placeholder="Serial Number">
         </div>
         <br>
         <div class="control is-expanded">
+            <label><i class="fas fa-user-shield"></i>  Coverage Length</label>
             <select class="input" name="coverageLength" type="select" value="{{ old('coverageLength','')}}" placeholder="Coverage Length">
             <option value="1 Year">1 Year</option>
             <option value="2 Year">2 Year</option>
