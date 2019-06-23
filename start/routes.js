@@ -19,5 +19,7 @@ const Route = use('Route')
 //Route.on('/').render('welcome')
 
 Route.get('/', 'DeviceController.index')
+Route.get('devices/edit/:id', 'DeviceController.edit')
 Route.post('devices', 'DeviceController.store')
+Route.put('devices/:id', 'DeviceController.update')
 Route.delete('devices/:id', 'DeviceController.destroy')

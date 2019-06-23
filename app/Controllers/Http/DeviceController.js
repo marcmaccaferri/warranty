@@ -60,6 +60,14 @@ class DeviceController {
   return response.redirect('back')
     }
     
+ async edit({ params, view }) {
+    const devices = await Device.find(params.id)
+
+    return view.render('devices.edit', {
+        devices: devices
+    })
+}
+    
   async destroy ({ params, session, response }) {
   const device = await Device.find(params.id)
   await device.delete()
@@ -68,6 +76,37 @@ class DeviceController {
   session.flash({ notification: 'Device Removed' })
 
   return response.redirect('back')
+}
+
+
+async update ({ params, request, session, response}) {
+const validation = await validate(request.all(), {
+        firstName: 'required|min:3|max:255',
+        lastName: 'required|min:3|max:255',
+        deviceType: 'required|min:3|max:255',
+        serialNumber: 'required|min:3|max:255',
+        coverageLength: 'required|min:3|max:255'
+  })
+if (validation.fails()) {
+    session.withErrors(validation.messages())
+            .flashAll()
+
+    return response.redirect('back')
+  }
+    
+    const device = await Device.find(params.id) 
+    
+    device.firstName = request.input('firstName')
+    device.lastName = request.input('lastName')
+    device.deviceType = request.input('deviceType')
+    device.serialNumber = request.input('serialNumber')
+    device.coverageLength = request.input('coverageLength')
+
+    await device.save()
+
+session.flash({ notification: 'Post Updated!' })
+return response.redirect('back')
+
 }
 }
 

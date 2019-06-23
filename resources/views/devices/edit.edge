@@ -1,0 +1,53 @@
+@layout('master')
+
+@section('content') 
+
+<div class="box">
+        <h2 class="title text-center">Edit Register A New Device</h2>
+
+<form action="{{'/devices/' + device.id + '?_method=PUT' }}" method="POST">
+    {{ csrfField() }}
+    
+    <div class="has-addons">
+        <div class="control is-expanded">
+            <label><i class="fa fa-user" aria-hidden="true"></i>  First Name</label>
+            <input class="input" name="firstName" type="text" value="{{ devices.firstName }}" placeholder="First Name">
+        </div>
+        <br>
+        <div class="control is-expanded">
+            <label><i class="fa fa-user" aria-hidden="true"></i>  Last Name</label>
+            <input class="input" name="lastName" type="text" value="{{ devices.lastName }}" placeholder="Last Name">
+        </div>
+        <br>
+        <div class="control is-expanded">
+            <label><i class="fa fa-mobile" aria-hidden="true"></i>  Device Type</label>
+            <input class="input" name="deviceType" type="text" value="{{ devices.deviceType }}" placeholder="Device Type">
+        </div>
+        <br>
+        <div class="control is-expanded">
+            <label><i class="fa fa-barcode" aria-hidden="true"></i>  Serial Number</label>
+            <input class="input" name="serialNumber" type="text" value="{{ devices.serialNumber }}" placeholder="Serial Number">
+        </div>
+        <br>
+        <div class="control is-expanded">
+            <label><i class="fas fa-user-shield"></i>  Coverage Length</label>
+            <select class="input" name="coverageLength" type="select" value="{{ devices.coverageLength }}" placeholder="Coverage Length">
+            <option value="1 Year">1 Year</option>
+            <option value="2 Year">2 Year</option>
+            </select>
+        </div>
+        <br>
+    <button type="submit" class="button is-primary">
+        Submit
+    </button>
+</div>
+</div>
+{{ elIf('<p class="help is-danger">$self</p>', getErrorFor('firstName'), hasErrorFor('firstName')) }}
+{{ elIf('<p class="help is-danger">$self</p>', getErrorFor('lastName'), hasErrorFor('lastName')) }}
+{{ elIf('<p class="help is-danger">$self</p>', getErrorFor('deviceType'), hasErrorFor('deviceType')) }}
+{{ elIf('<p class="help is-danger">$self</p>', getErrorFor('serialNumber'), hasErrorFor('serialNumber')) }}
+{{ elIf('<p class="help is-danger">$self</p>', getErrorFor('coverageLength'), hasErrorFor('coverageLength')) }}
+</form>
+</div>
+
+@endsection

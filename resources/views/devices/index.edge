@@ -63,7 +63,6 @@
             <th>Serial Number</th>
             <th>Coverage Length</th>
             <th>Coverage Number</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -88,6 +87,9 @@
                     {{ ($loop.index + 1) }}
                 </td>
                 <td>
+                    <a href="/devices/edit/{{device.id}}" class="button is-warning is-outlined">EDIT</a>
+                </td>
+                <td>
                     <form action="{{ 'devices/' + device.id + '?_method=DELETE' }}" method="POST">
                       {{ csrfField() }}
 
@@ -96,7 +98,7 @@
                         <span class="icon is-small">
                           <i class="fa fa-times" aria-hidden="true"></i>
                         </span>
-                      </butdton>
+                      </button>
                     </form>
                 </td>
             </tr>
