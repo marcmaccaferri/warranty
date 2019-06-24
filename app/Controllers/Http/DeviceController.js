@@ -11,6 +11,7 @@ class DeviceController {
     }
     
     async store ({ request, response, session }) {
+const data = request.only(['firstName', 'lastName', 'deviceType', 'serialNumber', 'coverageLength'])
   // validate form input
   const validation = await validate(request.all(), {
         firstName: 'required|min:3|max:255',
@@ -21,6 +22,8 @@ class DeviceController {
   })
 
   // show error messages upon validation fail
+ 
+  
   if (validation.fails()) {
     session.withErrors(validation.messages())
             .flashAll()
@@ -35,7 +38,6 @@ class DeviceController {
      device.deviceType = request.input('deviceType')
      device.serialNumber = request.input('serialNumber')
      device.coverageLength = request.input('coverageLength')
-  await device.save()
 
     /*const firstName = request.input('firstName')
     const lastName = request.input('lastName')
@@ -50,22 +52,46 @@ class DeviceController {
     device.serialNumber = serialNumber
     device.coverageLength = coverageLength*/
     
-
-    await device.save()
     //return response.json(device)
 
   // Fash success message to session
-  session.flash({ notification: 'Device Registered Successfully' })
+  
+await Device.create(data)     
+session.flash({ notification: 'Device Registered Successfully' })
 
   return response.redirect('back')
     }
     
  async edit({ params, view }) {
-    const devices = await Device.find(params.id)
+        const devices = await Device.find (params.id)
 
-    return view.render('devices.edit', {
-        devices: devices
-    })
+        return view.render('devices.edit', { devices: devices.toJSON() })
+    }
+    
+    async update ({ params, session, request, response}) {
+const data = request.only(['firstName', 'lastName', 'deviceType', 'serialNumber', 'coverageLength'])
+    
+const validation = await validate(data, {
+    firstName: 'required',
+    lastName: 'required',
+    deviceType: 'required',
+    serialNumber: 'required',
+    firstName: 'required',
+})
+
+if (validation.fails()) {
+    session.withErrors(validation.messages())
+            .flashAll()
+
+    return response.redirect('back')
+  }
+    
+const device = await Device.find(params.id)
+   device.merge(data)
+   await device.save()
+
+return response.redirect('/')
+
 }
     
   async destroy ({ params, session, response }) {
@@ -76,37 +102,6 @@ class DeviceController {
   session.flash({ notification: 'Device Removed' })
 
   return response.redirect('back')
-}
-
-
-async update ({ params, request, session, response}) {
-const validation = await validate(request.all(), {
-        firstName: 'required|min:3|max:255',
-        lastName: 'required|min:3|max:255',
-        deviceType: 'required|min:3|max:255',
-        serialNumber: 'required|min:3|max:255',
-        coverageLength: 'required|min:3|max:255'
-  })
-if (validation.fails()) {
-    session.withErrors(validation.messages())
-            .flashAll()
-
-    return response.redirect('back')
-  }
-    
-    const device = await Device.find(params.id) 
-    
-    device.firstName = request.input('firstName')
-    device.lastName = request.input('lastName')
-    device.deviceType = request.input('deviceType')
-    device.serialNumber = request.input('serialNumber')
-    device.coverageLength = request.input('coverageLength')
-
-    await device.save()
-
-session.flash({ notification: 'Post Updated!' })
-return response.redirect('back')
-
 }
 }
 
