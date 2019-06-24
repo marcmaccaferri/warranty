@@ -5,7 +5,7 @@
 <div class="box">
         <h2 class="title text-center">Edit A Registered Device</h2>
 
-<form action="{{'/devices/' + device.id + '?_method=PUT' }}" method="POST">
+<form action="/devices/{{ devices.id }}?_method=PUT" method="POST">
     {{ csrfField() }}
     
     <div class="has-addons">
